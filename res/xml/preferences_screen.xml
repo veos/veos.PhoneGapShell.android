@@ -18,10 +18,10 @@
         <PreferenceCategory
                 android:title="Second Category"> -->
         <EditTextPreference
-                android:summary="The URL that should be loaded when the app starts up."
+                android:summary="The URL loaded when the app launches"
                 android:defaultValue="http://"
-                android:title="Sail App URL"
-                android:key="sail_app_url" />
+                android:title="VEOS Server URL"
+                android:key="app_url" />
         <!-- <RingtonePreference
                 android:name="Ringtone Preference"
                 android:summary="Select a ringtone"

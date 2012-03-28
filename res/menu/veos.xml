@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/sail_settings"
-          android:title="@string/sail_settings"
-          android:onClick="showSailPrefPane" />
+    <item android:id="@+id/settings"
+          android:title="@string/settings"/>
    	<item android:id="@+id/reload"
           android:title="@string/reload"
           android:onClick="reload" />

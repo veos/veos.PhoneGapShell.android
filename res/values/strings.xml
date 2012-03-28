@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">VEOS mobile app</string>
-    <string name="sail_settings">Sail Settings</string>
+
+    <string name="hello">Hello World, welcome to the VEOS Shell!</string>
+    <string name="app_name">VEOS</string>
+    <string name="settings">Settings</string>
     <string name="reload">Reload</string>
+
 </resources>
