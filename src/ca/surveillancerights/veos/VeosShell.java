@@ -27,11 +27,11 @@ public class VeosShell extends DroidGap {
     public String getAppUrl() {
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         
-    	String defaultSailAppUrl = "http://192.168.222.108:8000/overview-map.html";//"http://mobile.veos.surveillancerights.ca/";
+    	String defaultAppUrl = "http://mobile.veos.surveillancerights.ca/";
     	
-        String appUrl = prefs.getString("app_url", defaultSailAppUrl);
+        String appUrl = prefs.getString("app_url", defaultAppUrl);
         if (appUrl.length() == 0) // make sure that the URL isn't blank
-        	appUrl = defaultSailAppUrl;
+        	appUrl = defaultAppUrl;
         
         if (appUrl.length() == 0) // make sure that it still isn't blank (in case defaultSailAppUrl was hosed)
         	appUrl = "file:///android_asset/www/index.html";
