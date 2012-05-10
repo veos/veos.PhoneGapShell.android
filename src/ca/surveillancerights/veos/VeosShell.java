@@ -27,7 +27,7 @@ public class VeosShell extends DroidGap {
     public String getAppUrl() {
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         
-    	String defaultAppUrl = "http://mobile.veos.surveillancerights.ca/";
+    	String defaultAppUrl = "http://mobile.veos.surveillancerights.ca/overview-map.html";
     	
         String appUrl = prefs.getString("app_url", defaultAppUrl);
         if (appUrl.length() == 0) // make sure that the URL isn't blank
@@ -51,13 +51,14 @@ public class VeosShell extends DroidGap {
     @Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Log.v(this.getClass().getName(), "Menu item selected: " + item.toString() + " (" + item.getItemId() + ")");
-    	if (item.getItemId() == R.id.settings) {
+    	/*if (item.getItemId() == R.id.settings) {
     		Intent prefsActivity = new Intent(getBaseContext(), VeosSettings.class);
     		startActivityForResult(prefsActivity, VeosShell.SET_PREFERENCES);
     		return true;
     	} else {
     		return false;
-    	}
+    	}*/
+		return false;
 	}
 
 	@Override
