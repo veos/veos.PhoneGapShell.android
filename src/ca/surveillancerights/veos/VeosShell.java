@@ -2,8 +2,13 @@ package ca.surveillancerights.veos;
 
 import org.apache.cordova.DroidGap;
 
+import ca.surveillancerights.veos.R;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -11,6 +16,8 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class VeosShell extends DroidGap {
 	
@@ -21,13 +28,59 @@ public class VeosShell extends DroidGap {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.loadUrl(getAppUrl());
+        setContentView(R.layout.main);
+        //super.loadUrl(getAppUrl());
+    }
+    
+    public void onShowMapClick(View view) {
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+    	        getSystemService(Context.CONNECTIVITY_SERVICE);
+    	    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+    	    
+	    if (networkInfo != null && networkInfo.isConnected()) {
+	        // load URL
+	    	super.loadUrl(getAppUrl() + "overview-map.html");
+	    } else {
+	        // display error
+	    	Toast toast = Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_LONG);
+	    	toast.show();
+	    } 
+    }
+    
+    public void onViewListClick(View view) {
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+    	        getSystemService(Context.CONNECTIVITY_SERVICE);
+    	    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+    	    
+	    if (networkInfo != null && networkInfo.isConnected()) {
+	        // load URL
+	    	super.loadUrl(getAppUrl() + "reports-list.html");
+	    } else {
+	        // display error
+	    	Toast toast = Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_LONG);
+	    	toast.show();
+	    } 
+    }
+    
+    public void onAddReportClick(View view) {
+    	ConnectivityManager connMgr = (ConnectivityManager) 
+    	        getSystemService(Context.CONNECTIVITY_SERVICE);
+    	    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+    	    
+	    if (networkInfo != null && networkInfo.isConnected()) {
+	        // load URL
+	    	super.loadUrl(getAppUrl() + "report.html");
+	    } else {
+	    	// display error
+	    	Toast toast = Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_LONG);
+	    	toast.show();
+	    } 
     }
     
     public String getAppUrl() {
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         
-    	String defaultAppUrl = "http://mobile.veos.surveillancerights.ca/overview-map.html";
+    	String defaultAppUrl = "http://mobile.veos.surveillancerights.ca/";
     	
         String appUrl = prefs.getString("app_url", defaultAppUrl);
         if (appUrl.length() == 0) // make sure that the URL isn't blank
