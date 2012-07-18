@@ -21,7 +21,8 @@
                 android:summary="The URL loaded when the app launches"
                 android:defaultValue="http://"
                 android:title="VEOS Server URL"
-                android:key="app_url" />
+                android:key="app_url"
+                android:inputType="textUri" />
         <!-- <RingtonePreference
                 android:name="Ringtone Preference"
                 android:summary="Select a ringtone"

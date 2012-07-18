@@ -104,14 +104,13 @@ public class VeosShell extends DroidGap {
     @Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Log.v(this.getClass().getName(), "Menu item selected: " + item.toString() + " (" + item.getItemId() + ")");
-    	/*if (item.getItemId() == R.id.settings) {
+    	if (item.getItemId() == R.id.settings) {
     		Intent prefsActivity = new Intent(getBaseContext(), VeosSettings.class);
     		startActivityForResult(prefsActivity, VeosShell.SET_PREFERENCES);
     		return true;
     	} else {
     		return false;
-    	}*/
-		return false;
+    	}
 	}
 
 	/*@Override
