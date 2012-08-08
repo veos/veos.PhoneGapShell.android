@@ -54,7 +54,7 @@ public class VeosShell extends DroidGap {
     	    
 	    if (networkInfo != null && networkInfo.isConnected()) {
 	        // load URL
-	    	super.loadUrl(getAppUrl() + "reports-list.html");
+	    	super.loadUrl(getAppUrl() + "installations-list.html");
 	    } else {
 	        // display error
 	    	Toast toast = Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_LONG);
