@@ -1,6 +1,6 @@
 package ca.surveillancerights.veos;
 
-import org.apache.cordova.DroidGap;
+import org.apache.cordova.*;
 
 import ca.surveillancerights.veos.R;
 
