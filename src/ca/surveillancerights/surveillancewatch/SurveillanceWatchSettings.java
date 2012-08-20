@@ -1,10 +1,11 @@
-package ca.surveillancerights.veos;
+package ca.surveillancerights.surveillancewatch;
 
+import ca.surveillancerights.surveillancewatch.R;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
 
-public class VeosSettings extends PreferenceActivity {
+public class SurveillanceWatchSettings extends PreferenceActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,8 +1,8 @@
-package ca.surveillancerights.veos;
+package ca.surveillancerights.surveillancewatch;
 
 import org.apache.cordova.*;
 
-import ca.surveillancerights.veos.R;
+import ca.surveillancerights.surveillancewatch.R;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class VeosShell extends DroidGap {
+public class SurveillanceWatchShell extends DroidGap {
 	
 	static final int SET_PREFERENCES = 0;
 	
@@ -106,8 +106,8 @@ public class VeosShell extends DroidGap {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Log.v(this.getClass().getName(), "Menu item selected: " + item.toString() + " (" + item.getItemId() + ")");
     	if (item.getItemId() == R.id.settings) {
-    		Intent prefsActivity = new Intent(getBaseContext(), VeosSettings.class);
-    		startActivityForResult(prefsActivity, VeosShell.SET_PREFERENCES);
+    		Intent prefsActivity = new Intent(getBaseContext(), SurveillanceWatchSettings.class);
+    		startActivityForResult(prefsActivity, SurveillanceWatchShell.SET_PREFERENCES);
     		return true;
     	} else {
     		return false;

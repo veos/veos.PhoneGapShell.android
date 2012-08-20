@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ca.surveillancerights.veos"
+    package="ca.surveillancerights.surveillancewatch"
     android:versionCode="5"
     android:versionName="1.5-dev" >
 
@@ -36,7 +36,7 @@
 
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-		<activity android:name=".VeosShell" android:label="@string/app_name" 
+		<activity android:name=".SurveillanceWatchShell" android:label="@string/app_name" 
 				  android:configChanges="orientation|keyboardHidden" >
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -48,7 +48,7 @@
         	<intent-filter>
         	</intent-filter>
         </activity>
-        <activity android:name=".VeosSettings" android:label="@string/app_name"></activity>
+        <activity android:name=".SurveillanceWatchSettings" android:label="@string/app_name"></activity>
         
    </application>
 
