@@ -6,8 +6,8 @@
     <string name="settings">Settings</string>
     <string name="reload">Reload</string>
     <string name="WelcomeHeader">Welcome to VEOS</string>
-    <string name="showOverviewMap">Show Overview Map</string>
-    <string name="ViewAsList">View as List</string>
+    <string name="showOverviewMap">Overview Map</string>
+    <string name="ViewAsList">Installation List</string>
     <string name="WelcomeDetail">
         The Video Eyes on the Street (VEOS) app is part of a research project from the University of Toronto.
         \nOur aim is to help Canadians learn more about video surveillance and their rights in relation to it. 
