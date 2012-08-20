@@ -19,8 +19,8 @@
                 android:title="Second Category"> -->
         <EditTextPreference
                 android:summary="The URL loaded when the app launches"
-                android:defaultValue="http://"
-                android:title="VEOS Server URL"
+                android:defaultValue="http://mobile.veos.surveillancerights.ca/"
+                android:title="SurveillanceWatch Server URL"
                 android:key="app_url"
                 android:inputType="textUri" />
         <!-- <RingtonePreference

@@ -96,7 +96,7 @@ public class VeosShell extends DroidGap {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.veos, menu);
+        inflater.inflate(R.menu.surveillancewatch, menu);
         return true;
     }
     
