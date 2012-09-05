@@ -1,33 +1,47 @@
 package ca.surveillancerights.surveillancewatch;
 
 import org.apache.cordova.*;
+import org.json.JSONObject;
 
 import ca.surveillancerights.surveillancewatch.R;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SurveillanceWatchShell extends DroidGap {
 	
 	static final int SET_PREFERENCES = 0;
 	
-	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // it looks like this is not actually used since we override the default view
+        super.setIntegerProperty("splashscreen", R.drawable.icon);
+        // Time in msec to wait before triggering a timeout error when loading
+        super.setIntegerProperty("loadUrlTimeoutValue", 10000); // 10 seconds
+        // We should probably use this...
+        //super.setStringProperty("errorUrl", "file:///android_asset/www/error.html");
+        
         setContentView(R.layout.main);
         //super.loadUrl(getAppUrl());
     }
@@ -39,6 +53,11 @@ public class SurveillanceWatchShell extends DroidGap {
     	    
 	    if (networkInfo != null && networkInfo.isConnected()) {
 	        // load URL
+	    	
+//	    	ProgressDialog dialog = ProgressDialog.show(SurveillanceWatchShell.this, "", 
+//                    "Loading map...", true);
+	    	
+	    	super.setStringProperty("loadingDialog", "Loading map…");
 	    	super.loadUrl(getAppUrl() + "overview-map.html");
 	    } else {
 	        // display error
@@ -54,6 +73,8 @@ public class SurveillanceWatchShell extends DroidGap {
     	    
 	    if (networkInfo != null && networkInfo.isConnected()) {
 	        // load URL
+	    	
+	    	super.setStringProperty("loadingDialog", "Loading list…");
 	    	super.loadUrl(getAppUrl() + "installations-list.html");
 	    } else {
 	        // display error
@@ -69,6 +90,8 @@ public class SurveillanceWatchShell extends DroidGap {
     	    
 	    if (networkInfo != null && networkInfo.isConnected()) {
 	        // load URL
+	    	
+	    	super.setStringProperty("loadingDialog", "Preparing new report…");
 	    	super.loadUrl(getAppUrl() + "report.html");
 	    } else {
 	    	// display error
@@ -122,9 +145,27 @@ public class SurveillanceWatchShell extends DroidGap {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	  if (keyCode == KeyEvent.KEYCODE_BACK) {
-	    if(appView.canGoBack()){
-	       appView.goBack();
-	        return true;
+	    if(appView != null && appView.canGoBack()){
+	    	appView.goBack();
+	    	return true;
+	    } else {
+	    	// FIXME: Unfortunately it is not possible to go back to the welcome screen
+	    	//		  This is because PhoneGap's loadUrl takes over the layout via setContentView().
+	    	//		  The right way to deal with this would probably be to make the welcome screen
+	    	//		  non-native (i.e. put it in assets/www/welcome.html).
+	    	
+	    	new AlertDialog.Builder(this)
+            .setMessage("Are you sure you want to exit SurveillanceWatch?")
+            .setCancelable(false)
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                     SurveillanceWatchShell.this.finish();
+                }
+            })
+            .setNegativeButton("No", null)
+            .show();
+	    	
+	    	return true;
 	    }
 	  }
 	  return super.onKeyDown(keyCode, event);
@@ -146,7 +187,10 @@ public class SurveillanceWatchShell extends DroidGap {
     public void reload(MenuItem item) {
     	Log.d("PhoneGapShell", "Deleting cache...");
     	this.getCacheDir().delete();
+    	this.appView.clearCache(true);
     	this.loadUrl(this.appView.getOriginalUrl());
     }
+    
+
     
 }

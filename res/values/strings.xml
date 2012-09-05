@@ -9,13 +9,19 @@
     <string name="showOverviewMap">View Map</string>
     <string name="ViewAsList">View List</string>
     <string name="WelcomeDetail">
-        The SurveillanceWatch app is part of a research project from the University of Toronto.
-        \nOur aim is to help Canadians learn more about video surveillance and their rights in relation to it. 
- 
-		You can use the SurveillanceWatch app to: 
-		\n* Spot the surveillance cameras in your vicinity (on a map or in a list)
-		\n* Report on surveillance cameras and the signs that describe them
-		\n* Learn about surveillance installations (collections of cameras with a common owner) that are not compliant with Canadian privacy regulations</string>
+<![CDATA[
+The SurveillanceWatch app is part of a research project from the University of Toronto.\n\n
+        
+Our aim is to help Canadians learn more about video surveillance and their rights in relation to it.\n\n
+        
+You can use the SurveillanceWatch app to:\n\n
+		  
+* Spot the surveillance cameras in your vicinity (on a map or in a list)\n
+* Report on surveillance cameras and the signs that describe them\n
+* Learn about surveillance installations (collections of cameras with a common owner) that are not compliant with Canadian privacy regulations\n
+]]>
+	</string>
+	<string name="loadingMap">Loading map…</string>
     <string name="addReport">Add Report</string>
 
 </resources>

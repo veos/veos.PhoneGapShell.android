@@ -2,24 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    android:id="@+id/welcomeView">
+    
     <TextView
-        android:id="@+id/Welcome"
+        android:id="@+id/WelcomeHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="#FCEC72"
         android:gravity="center_horizontal"
-        android:paddingBottom="10dip"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:text="@string/WelcomeHeader"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/WelcomeText"
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
+        android:layout_height="0dp"
         android:layout_weight="1.04"
+        android:clickable="false"
+        android:gravity="center_vertical|fill_horizontal"
+        android:includeFontPadding="false"
+        android:longClickable="false"
+        android:paddingLeft="34dp"
+        android:paddingRight="34dp"
+        android:paddingTop="12dp"
+        android:scrollHorizontally="false"
         android:text="@string/WelcomeDetail"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FCEC72"
+        android:textSize="17dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -30,9 +46,9 @@
             android:id="@+id/ShowOverviewMap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="onShowMapClick"
-            android:text="@string/showOverviewMap"
-            android:layout_weight="1" />
+            android:text="@string/showOverviewMap" />
         
         <Button
             android:id="@+id/ViewAsList"

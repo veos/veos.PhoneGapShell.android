@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:id="@+id/loadingMapView" >
+
+    <ImageView
+        android:id="@+id/loadingMapIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/loadingMapText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loadingMapIcon"
+        android:layout_centerHorizontal="true"
+        android:text="@string/loadingMap"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+</RelativeLayout>
