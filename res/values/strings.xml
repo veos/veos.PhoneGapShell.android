@@ -21,7 +21,7 @@ You can use the SurveillanceWatch app to:\n\n
 * Learn about surveillance installations (collections of cameras with a common owner) that are not compliant with Canadian privacy regulations\n
 ]]>
 	</string>
-	<string name="loadingMap">Loading map…</string>
+	<string name="loadingMap">Loading map...</string>
     <string name="addReport">Add Report</string>
 
 </resources>
