@@ -11,12 +11,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SurveillanceWatchShell extends DroidGap {
@@ -39,6 +41,8 @@ public class SurveillanceWatchShell extends DroidGap {
 
 		setContentView(R.layout.main);
 		// super.loadUrl(getAppUrl());
+		
+		((TextView) findViewById(R.id.WelcomeText)).setMovementMethod(new ScrollingMovementMethod());
 	}
 
 	public void onShowMapClick(View view) {
