@@ -56,7 +56,7 @@ public class SurveillanceWatchShell extends DroidGap {
 			// ProgressDialog.show(SurveillanceWatchShell.this, "",
 			// "Loading map...", true);
 
-			super.setStringProperty("loadingDialog", "Loading map…");
+			super.setStringProperty("loadingDialog", "Loading map...");
 			super.loadUrl(getAppUrl()+"/app.html#/overview-map.html");
 		} else {
 			// display error
@@ -73,7 +73,7 @@ public class SurveillanceWatchShell extends DroidGap {
 		if (networkInfo != null && networkInfo.isConnected()) {
 			// load URL
 
-			super.setStringProperty("loadingDialog", "Loading list…");
+			super.setStringProperty("loadingDialog", "Loading list...");
 			super.loadUrl(getAppUrl() + "/app.html#/installations-list.html");
 		} else {
 			// display error
@@ -90,7 +90,7 @@ public class SurveillanceWatchShell extends DroidGap {
 		if (networkInfo != null && networkInfo.isConnected()) {
 			// load URL
 
-			super.setStringProperty("loadingDialog", "Preparing new report…");
+			super.setStringProperty("loadingDialog", "Preparing new report...");
 			super.loadUrl(getAppUrl() + "/app.html#/report.html");
 		} else {
 			// display error
