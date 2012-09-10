@@ -19,7 +19,7 @@
                 android:title="Second Category"> -->
         <EditTextPreference
                 android:summary="The URL loaded when the app launches"
-                android:defaultValue="http://mobile.new.surveillancerights.ca/"
+                android:defaultValue="http://mobile.dev.surveillancerights.ca/"
                 android:title="SurveillanceWatch Server URL"
                 android:key="app_url"
                 android:inputType="textUri" />
