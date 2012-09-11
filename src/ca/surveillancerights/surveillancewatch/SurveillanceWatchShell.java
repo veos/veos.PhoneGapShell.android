@@ -133,11 +133,24 @@ public class SurveillanceWatchShell extends DroidGap {
 		Log.v(this.getClass().getName(),
 				"Menu item selected: " + item.toString() + " ("
 						+ item.getItemId() + ")");
-		if (item.getItemId() == R.id.settings) {
-			Intent prefsActivity = new Intent(getBaseContext(),
-					SurveillanceWatchSettings.class);
-			startActivityForResult(prefsActivity,
-					SurveillanceWatchShell.SET_PREFERENCES);
+//		if (item.getItemId() == R.id.settings) {
+//			Intent prefsActivity = new Intent(getBaseContext(),
+//					SurveillanceWatchSettings.class);
+//			startActivityForResult(prefsActivity,
+//					SurveillanceWatchShell.SET_PREFERENCES);
+//			return true;
+//		} else
+		if (item.getItemId() == R.id.privacypolicy) {
+			privacyPolicy(item);
+			return true;
+		} else if (item.getItemId() == R.id.termsofuse) {
+			termsOfUse(item);
+			return true;
+		} else if (item.getItemId() == R.id.help) {
+			help(item);
+			return true;
+		} else if (item.getItemId() == R.id.backtoapp) {
+			backToApp(item);
 			return true;
 		} else {
 			return false;
@@ -200,5 +213,30 @@ public class SurveillanceWatchShell extends DroidGap {
 		this.appView.clearCache(true);
 		this.loadUrl(this.appView.getOriginalUrl());
 	}
-
+	
+	public void privacyPolicy(MenuItem item) {
+		Log.d("PhoneGapShell", "Loading Privacy Policy ...");
+		
+		this.loadUrl("http://surveillancerights.ca/privacypolicy.html#app_privacy");
+	}
+	
+	public void termsOfUse(MenuItem item) {
+		Log.d("PhoneGapShell", "Loading Terms of Use ...");
+		
+		this.loadUrl("http://surveillancerights.ca/termsofuse.html");
+	}
+	
+	public void help(MenuItem item) {
+		Log.d("PhoneGapShell", "Loading Help ...");
+		
+		this.loadUrl("http://surveillancerights.ca/app.html");
+	}
+	
+	public void backToApp(MenuItem item) {
+		Log.d("PhoneGapShell", "Loading map ...");
+		
+		this.loadUrl(getAppUrl()+"/app.html#/overview-map.html");
+	}
+	
+	
 }

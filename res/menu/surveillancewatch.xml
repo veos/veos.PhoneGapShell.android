@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/settings"
+    <item android:id="@+id/privacypolicy"
+          android:title="@string/privacypolicy"
+          android:onClick="privacyPolicy" />
+    <item android:id="@+id/termsofuse"
+          android:title="@string/termsofuse"
+          android:onClick="termsOfUse" />
+    <!-- <item android:id="@+id/settings"
           android:title="@string/settings"/>
    	<item android:id="@+id/reload"
           android:title="@string/reload"
-          android:onClick="reload" />
+          android:onClick="reload" /> -->
+    <item android:id="@+id/help"
+          android:title="@string/help"
+          android:onClick="help" />
+   	<item android:id="@+id/backtoapp"
+          android:title="@string/backtoapp"
+          android:onClick="backToApp" />
 </menu>
