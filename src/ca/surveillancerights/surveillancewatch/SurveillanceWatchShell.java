@@ -1,6 +1,14 @@
 package ca.surveillancerights.surveillancewatch;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Map.Entry;
+import java.util.Properties;
+
 import org.apache.cordova.DroidGap;
+
+import ca.surveillancerights.surveillancewatch.httpd.AssetsHTTPD;
+import ca.surveillancerights.surveillancewatch.httpd.NanoHTTPD;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,6 +18,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -22,6 +31,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SurveillanceWatchShell extends DroidGap {
+	
+	private static final int NANO_HTTPD_PORT = 8765;
+	private static final String DEFAULT_APP_URL = "http://localhost:" + NANO_HTTPD_PORT;
+	
+	private NanoHTTPD server;
+	private Handler handler = new Handler();
 
 	static final int SET_PREFERENCES = 0;
 
@@ -43,6 +58,26 @@ public class SurveillanceWatchShell extends DroidGap {
 		// super.loadUrl(getAppUrl());
 		
 		((TextView) findViewById(R.id.WelcomeText)).setMovementMethod(new ScrollingMovementMethod());
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		try {
+			server = new AssetsHTTPD(NANO_HTTPD_PORT, getAssets(), "www");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (server != null)
+			server.stop();
 	}
 
 	public void onShowMapClick(View view) {
@@ -104,7 +139,7 @@ public class SurveillanceWatchShell extends DroidGap {
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
 
-		String defaultAppUrl = "http://mobile.watch.surveillancerights.ca/";
+		String defaultAppUrl = DEFAULT_APP_URL;
 		//String defaultAppUrl = "http://mobile.dev.surveillancerights.ca";
 
 		String appUrl = prefs.getString("app_url", defaultAppUrl);
