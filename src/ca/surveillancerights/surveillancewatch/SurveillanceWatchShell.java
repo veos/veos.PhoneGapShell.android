@@ -34,7 +34,7 @@ public class SurveillanceWatchShell extends DroidGap {
 		// view
 		//super.setIntegerProperty("splashscreen", R.drawable.icon);
 		// Time in msec to wait before triggering a timeout error when loading
-		super.setIntegerProperty("loadUrlTimeoutValue", 10000); // 10 seconds
+		super.setIntegerProperty("loadUrlTimeoutValue", 20000); // 20 seconds
 		// We should probably use this...
 		// super.setStringProperty("errorUrl",
 		// "file:///android_asset/www/error.html");
@@ -104,8 +104,8 @@ public class SurveillanceWatchShell extends DroidGap {
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
 
-		// String defaultAppUrl = "http://mobile.watch.surveillancerights.ca/";
-		String defaultAppUrl = "http://mobile.dev.surveillancerights.ca";
+		String defaultAppUrl = "http://mobile.watch.surveillancerights.ca/";
+		//String defaultAppUrl = "http://mobile.dev.surveillancerights.ca";
 
 		String appUrl = prefs.getString("app_url", defaultAppUrl);
 		if (appUrl.length() == 0) // make sure that the URL isn't blank
