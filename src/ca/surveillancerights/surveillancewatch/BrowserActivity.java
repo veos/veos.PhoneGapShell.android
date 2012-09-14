@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.webkit.GeolocationPermissions;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -21,10 +23,21 @@ public class BrowserActivity extends Activity {
 		//((TextView) findViewById(R.id.WelcomeText)).setMovementMethod(new ScrollingMovementMethod());
 		WebView browser = (WebView) findViewById(R.id.browser);
 		//browser.setBackgroundColor(0x00000000);
-		
+
 		WebSettings browserSettings = browser.getSettings();
 		browserSettings.setJavaScriptEnabled(true);
 		browserSettings.setGeolocationEnabled(true);
+		
+		// geolocation database is disabled for now... slower lookups, but maybe better privacy?
+		//browserSettings.setGeolocationDatabasePath("/data/data/SurveillanceRights");
+		
+		// always grant permission when WebView requests geolocation
+		browser.setWebChromeClient(new WebChromeClient() {
+			public void onGeolocationPermissionsShowPrompt(String origin,
+					GeolocationPermissions.Callback callback) {
+				callback.invoke(origin, true, false);
+			}
+		});
 		
 		String url = getVeosUrl()+"/app.html#/overview-map.html";
 		Log.v(BrowserActivity.class.getName(), "Loading: "+url);
