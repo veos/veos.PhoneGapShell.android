@@ -36,23 +36,14 @@ public class WelcomeActivity extends Activity {
 
 	public void onShowMapClick(View view) {
 		Intent intent = new Intent(this, BrowserActivity.class);
+		intent.putExtra("page", "overview-map.html");
 		startActivity(intent);
 	}
 
 	public void onViewListClick(View view) {
-		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-		if (networkInfo != null && networkInfo.isConnected()) {
-			// load URL
-
-			//super.loadUrl(getAppUrl() + "/app.html#/installations-list.html");
-		} else {
-			// display error
-			Toast toast = Toast.makeText(getApplicationContext(),
-					"No network connection", Toast.LENGTH_LONG);
-			toast.show();
-		}
+		Intent intent = new Intent(this, BrowserActivity.class);
+		intent.putExtra("page", "installations-list.html");
+		startActivity(intent);
 	}
 
 	@Override
@@ -94,31 +85,6 @@ public class WelcomeActivity extends Activity {
 	/*
 	 * @Override public boolean onKeyDown(int i,KeyEvent e){ return false; }
 	 */
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-//			if (appView != null && appView.canGoBack()) {
-//				appView.goBack();
-//				return true;
-//			} else {
-//				new AlertDialog.Builder(this)
-//						.setMessage(
-//								"Are you sure you want to exit SurveillanceWatch?")
-//						.setCancelable(false)
-//						.setPositiveButton("Yes",
-//								new DialogInterface.OnClickListener() {
-//									public void onClick(DialogInterface dialog,
-//											int id) {
-//										SurveillanceWatchShell.this.finish();
-//									}
-//								}).setNegativeButton("No", null).show();
-//
-//				return true;
-//			}
-		}
-		return super.onKeyDown(keyCode, event);
-	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
