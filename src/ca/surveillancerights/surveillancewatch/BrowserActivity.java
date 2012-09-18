@@ -38,9 +38,8 @@ import android.widget.Toast;
 
 public class BrowserActivity extends Activity {
 
-	// final static String DEFAULT_VEOS_URL =
-	// "http://mobile.watch.surveillancerights.ca/";
-	final static String DEFAULT_VEOS_URL = "http://192.168.222.114:8000/";
+	final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
+	//final static String DEFAULT_VEOS_URL = "http://192.168.222.114:8000/";
 	//final static String DEFAULT_VEOS_URL = "http://192.168.43.221:8000";
 
 	private static final int GET_PHOTO_FROM_CAMERA = 0;
