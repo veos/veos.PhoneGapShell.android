@@ -21,6 +21,8 @@ public class WelcomeActivity extends Activity {
 
 	static final int SET_PREFERENCES = 0;
 
+	WebView welcomeHtml;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class WelcomeActivity extends Activity {
 		setContentView(R.layout.welcome);
 		
 		//((TextView) findViewById(R.id.WelcomeText)).setMovementMethod(new ScrollingMovementMethod());
-		WebView welcomeHtml = (WebView) findViewById(R.id.welcome_html);
+		welcomeHtml = (WebView) findViewById(R.id.welcome_html);
 		welcomeHtml.setBackgroundColor(0x00000000);
 		welcomeHtml.loadUrl("file:///android_asset/www/welcome.html");
 	}
@@ -66,16 +68,16 @@ public class WelcomeActivity extends Activity {
 //			return true;
 //		} else
 		if (item.getItemId() == R.id.privacypolicy) {
-			privacyPolicy(item);
+			loadPrivacyPolicy(item);
 			return true;
 		} else if (item.getItemId() == R.id.termsofuse) {
-			termsOfUse(item);
+			loadTermsOfUse(item);
 			return true;
 		} else if (item.getItemId() == R.id.help) {
-			help(item);
+			loadHelp(item);
 			return true;
 		} else if (item.getItemId() == R.id.backtoapp) {
-			backToApp(item);
+			loadWelcome(item);
 			return true;
 		} else {
 			return false;
@@ -106,28 +108,28 @@ public class WelcomeActivity extends Activity {
 		//this.loadUrl(this.appView.getOriginalUrl());
 	}
 	
-	public void privacyPolicy(MenuItem item) {
+	public void loadPrivacyPolicy(MenuItem item) {
 		Log.d("PhoneGapShell", "Loading Privacy Policy ...");
 		
-		//this.loadUrl("http://surveillancerights.ca/privacypolicy.html#app_privacy");
+		welcomeHtml.loadUrl("http://surveillancerights.ca/privacypolicy.html#app_privacy");
 	}
 	
-	public void termsOfUse(MenuItem item) {
+	public void loadTermsOfUse(MenuItem item) {
 		Log.d("PhoneGapShell", "Loading Terms of Use ...");
 		
-		//this.loadUrl("http://surveillancerights.ca/termsofuse.html");
+		welcomeHtml.loadUrl("http://surveillancerights.ca/termsofuse.html");
 	}
 	
-	public void help(MenuItem item) {
+	public void loadHelp(MenuItem item) {
 		Log.d("PhoneGapShell", "Loading Help ...");
 		
-		//this.loadUrl("http://surveillancerights.ca/app.html");
+		welcomeHtml.loadUrl("http://surveillancerights.ca/app.html");
 	}
 	
-	public void backToApp(MenuItem item) {
+	public void loadWelcome(MenuItem item) {
 		Log.d("PhoneGapShell", "Loading map ...");
 		
-		//this.loadUrl(getVeosUrl()+"/app.html#/overview-map.html");
+		welcomeHtml.loadUrl("file:///android_asset/www/welcome.html");
 	}
 	
 	

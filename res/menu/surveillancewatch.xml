@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/privacypolicy"
           android:title="@string/privacypolicy"
-          android:onClick="privacyPolicy" />
+          android:onClick="loadPrivacyPolicy" />
     <item android:id="@+id/termsofuse"
           android:title="@string/termsofuse"
-          android:onClick="termsOfUse" />
+          android:onClick="loadTermsOfUse" />
     <!-- <item android:id="@+id/settings"
           android:title="@string/settings"/>
    	<item android:id="@+id/reload"
@@ -13,8 +13,8 @@
           android:onClick="reload" /> -->
     <item android:id="@+id/help"
           android:title="@string/help"
-          android:onClick="help" />
+          android:onClick="loadHelp" />
    	<item android:id="@+id/backtoapp"
           android:title="@string/backtoapp"
-          android:onClick="backToApp" />
+          android:onClick="loadWelcome" />
 </menu>
