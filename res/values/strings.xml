@@ -14,5 +14,7 @@
     <string name="ViewAsList">View List</string>
 	<string name="loadingMap">Loading map...</string>
     <string name="addReport">Add Report</string>
+    <string name="map">Map</string>
+    <string name="listOfInstallations">List of Installations</string>
 
 </resources>

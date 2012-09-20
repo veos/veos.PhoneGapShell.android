@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Disabling these two items for now because implementing this
+            would be a bit more complicated than anticipated.
+            Specifically, switching between map/list is tricky because
+            we'll either launch multiple instances of the same activity,
+            or just switch back to BrowserActivity (which is already running, so nothing happens)
+        <item android:id="@+id/map"
+            android:title="@string/map" />
+    <item android:id="@+id/listOfInstallations"
+            android:title="@string/listOfInstallations" /> -->
     <item android:id="@+id/privacypolicy"
-          android:title="@string/privacypolicy"
-          android:onClick="loadPrivacyPolicy" />
+          android:title="@string/privacypolicy" />
     <item android:id="@+id/termsofuse"
-          android:title="@string/termsofuse"
-          android:onClick="loadTermsOfUse" />
+          android:title="@string/termsofuse" />
     <!-- <item android:id="@+id/settings"
           android:title="@string/settings"/>
    	<item android:id="@+id/reload"
           android:title="@string/reload"
           android:onClick="reload" /> -->
     <item android:id="@+id/help"
-          android:title="@string/help"
-          android:onClick="loadHelp" />
+          android:title="@string/help" />
    	<item android:id="@+id/backtoapp"
-          android:title="@string/backtoapp"
-          android:onClick="loadWelcome" />
+          android:title="@string/backtoapp" />
 </menu>
