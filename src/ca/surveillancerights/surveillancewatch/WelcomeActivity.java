@@ -32,6 +32,9 @@ public class WelcomeActivity extends WebViewActivity {
 		
 		//((TextView) findViewById(R.id.WelcomeText)).setMovementMethod(new ScrollingMovementMethod());
 		welcomeHtml = (WebView) findViewById(R.id.welcome_html);
+		
+		setupMainWebView();
+		
 		welcomeHtml.setBackgroundColor(0x00000000);
 		welcomeHtml.loadUrl("file:///android_asset/www/welcome.html");
 	}

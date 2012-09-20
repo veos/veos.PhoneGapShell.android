@@ -71,6 +71,8 @@ public class BrowserActivity extends WebViewActivity {
 		browser = (WebView) findViewById(R.id.browser);
 		// browser.setBackgroundColor(0x00000000);
 		
+		setupMainWebView();
+		
 		browser.setPadding(0, 0, 0, 0);
 
 		WebSettings browserSettings = browser.getSettings();
@@ -107,12 +109,6 @@ public class BrowserActivity extends WebViewActivity {
 			}
 		});
 		
-		browser.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				loaderDialog.dismiss();
-			}
-		});
 
 		// add interface for executing functions in this activity in javascript
 		browser.addJavascriptInterface(this, "Android");

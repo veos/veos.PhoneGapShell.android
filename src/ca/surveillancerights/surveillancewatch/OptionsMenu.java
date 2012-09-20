@@ -45,8 +45,7 @@ public class OptionsMenu {
 			if (originalAppUrl != null) {
 				loadOriginalAppUrl(act);
 				originalAppUrl = null;
-			} else
-				loadWelcome(act);
+			}
 			return true;
 		} else {
 			return false;
