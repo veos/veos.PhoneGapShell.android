@@ -17,7 +17,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends WebViewActivity {
 
 	static final int SET_PREFERENCES = 0;
 
@@ -50,43 +50,26 @@ public class WelcomeActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.surveillancewatch, menu);
-		return true;
+		return OptionsMenu.create(this, menu);
 	}
 
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		Log.v(this.getClass().getName(),
-				"Menu item selected: " + item.toString() + " ("
-						+ item.getItemId() + ")");
-//		if (item.getItemId() == R.id.settings) {
-//			Intent prefsActivity = new Intent(getBaseContext(),
-//					SurveillanceWatchSettings.class);
-//			startActivityForResult(prefsActivity,
-//					SurveillanceWatchShell.SET_PREFERENCES);
-//			return true;
-//		} else
-		if (item.getItemId() == R.id.privacypolicy) {
-			loadPrivacyPolicy(item);
-			return true;
-		} else if (item.getItemId() == R.id.termsofuse) {
-			loadTermsOfUse(item);
-			return true;
-		} else if (item.getItemId() == R.id.help) {
-			loadHelp(item);
-			return true;
-		} else if (item.getItemId() == R.id.backtoapp) {
-			loadWelcome(item);
-			return true;
-		} else {
-			return false;
-		}
+		return OptionsMenu.selectItem(this, featureId, item);
 	}
 
-	/*
-	 * @Override public boolean onKeyDown(int i,KeyEvent e){ return false; }
-	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// Check if the key event was the Back button and if there's history
+	    if ((keyCode == KeyEvent.KEYCODE_BACK) && welcomeHtml.canGoBack()) {
+	    	welcomeHtml.goBack();
+	        return true;
+	    }
+	    // If it wasn't the Back key or there's no web page history, bubble up to the default
+	    // system behavior (probably exit the activity)
+	    return super.onKeyDown(keyCode, event);
+	}
+	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
@@ -100,37 +83,9 @@ public class WelcomeActivity extends Activity {
 			super.onActivityResult(requestCode, resultCode, intent);
 		}
 	}
-
-	public void reload(MenuItem item) {
-		Log.d("PhoneGapShell", "Deleting cache...");
-		this.getCacheDir().delete();
-		//this.appView.clearCache(true);
-		//this.loadUrl(this.appView.getOriginalUrl());
-	}
 	
-	public void loadPrivacyPolicy(MenuItem item) {
-		Log.d("PhoneGapShell", "Loading Privacy Policy ...");
-		
-		welcomeHtml.loadUrl("http://surveillancerights.ca/privacypolicy.html#app_privacy");
+	public WebView getMainWebView() {
+		return welcomeHtml;
 	}
-	
-	public void loadTermsOfUse(MenuItem item) {
-		Log.d("PhoneGapShell", "Loading Terms of Use ...");
-		
-		welcomeHtml.loadUrl("http://surveillancerights.ca/termsofuse.html");
-	}
-	
-	public void loadHelp(MenuItem item) {
-		Log.d("PhoneGapShell", "Loading Help ...");
-		
-		welcomeHtml.loadUrl("http://surveillancerights.ca/app.html");
-	}
-	
-	public void loadWelcome(MenuItem item) {
-		Log.d("PhoneGapShell", "Loading map ...");
-		
-		welcomeHtml.loadUrl("file:///android_asset/www/welcome.html");
-	}
-	
 	
 }

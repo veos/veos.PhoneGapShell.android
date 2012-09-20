@@ -28,6 +28,8 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.Window;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
@@ -36,11 +38,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class BrowserActivity extends Activity {
+public class BrowserActivity extends WebViewActivity {
 
 	final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
 	//final static String DEFAULT_VEOS_URL = "http://192.168.222.114:8000/";
-	//final static String DEFAULT_VEOS_URL = "http://192.168.43.221:8000";
+	//final static String DEFAULT_VEOS_URL = "http://10.2.1.79:8000";
 
 	private static final int GET_PHOTO_FROM_CAMERA = 0;
 	private static final int GET_PHOTO_FROM_GALLERY = 1;
@@ -94,8 +96,7 @@ public class BrowserActivity extends Activity {
 			loaderText = "Loading data...";
 		}
 		
-		final ProgressDialog dialog =
-				ProgressDialog.show(BrowserActivity.this, "", loaderText, true);
+		showLoader(loaderText);
 		
 		// always grant permission when WebView requests geolocation
 		browser.setWebChromeClient(new WebChromeClient() {
@@ -109,7 +110,7 @@ public class BrowserActivity extends Activity {
 		browser.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {
-				dialog.dismiss();
+				loaderDialog.dismiss();
 			}
 		});
 
@@ -304,14 +305,29 @@ public class BrowserActivity extends Activity {
     }
 	
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return OptionsMenu.create(this, menu);
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		return OptionsMenu.selectItem(this, featureId, item);
+	}
+	
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// Check if the key event was the Back button and if there's history
 	    if ((keyCode == KeyEvent.KEYCODE_BACK) && browser.canGoBack()) {
+	    	showLoader("Loading...");
 	        browser.goBack();
 	        return true;
 	    }
 	    // If it wasn't the Back key or there's no web page history, bubble up to the default
 	    // system behavior (probably exit the activity)
 	    return super.onKeyDown(keyCode, event);
+	}
+	
+	public WebView getMainWebView() {
+		return browser;
 	}
 }
