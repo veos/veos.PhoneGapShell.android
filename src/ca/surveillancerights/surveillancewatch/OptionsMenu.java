@@ -1,5 +1,6 @@
 package ca.surveillancerights.surveillancewatch;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,28 +27,36 @@ public class OptionsMenu {
 //					SurveillanceWatchShell.SET_PREFERENCES);
 //			return true;
 //		} else
-		if (item.getItemId() == R.id.privacypolicy) {
+		
+		switch (item.getItemId()) {
+//		case R.id.map:
+//			loadMap(act);
+//			return true;
+//		case R.id.listOfInstallations:
+//			loadListOfInstallations(act);
+//			return true;
+		case R.id.privacypolicy:
 			if (originalAppUrl == null)
 				originalAppUrl = act.getMainWebView().getUrl();
 			loadPrivacyPolicy(act);
 			return true;
-		} else if (item.getItemId() == R.id.termsofuse) {
+		case R.id.termsofuse:
 			if (originalAppUrl == null)
 				originalAppUrl = act.getMainWebView().getUrl();
 			loadTermsOfUse(act);
 			return true;
-		} else if (item.getItemId() == R.id.help) {
+		case R.id.help:
 			if (originalAppUrl == null)
 				originalAppUrl = act.getMainWebView().getUrl();
 			loadHelp(act);
 			return true;
-		} else if (item.getItemId() == R.id.backtoapp) {
+		case R.id.backtoapp:
 			if (originalAppUrl != null) {
 				loadOriginalAppUrl(act);
 				originalAppUrl = null;
 			}
 			return true;
-		} else {
+		default:
 			return false;
 		}
 	}
@@ -86,5 +95,19 @@ public class OptionsMenu {
 	public static void loadOriginalAppUrl(WebViewActivity act) {
 		act.showLoader("Loading...");
 		act.getMainWebView().loadUrl(originalAppUrl);
+	}
+	
+	public static void loadMap(WebViewActivity act) {
+		Intent intent = new Intent(act, BrowserActivity.class);
+		intent.putExtra("page", "overview-map.html");
+		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // bring to front if already running
+		act.startActivity(intent);
+	}
+	
+	public static void loadListOfInstallations(WebViewActivity act) {
+		Intent intent = new Intent(act, BrowserActivity.class);
+		intent.putExtra("page", "installations-list.html");
+		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // bring to front if already running
+		act.startActivity(intent);
 	}
 }

@@ -1,21 +1,12 @@
 package ca.surveillancerights.surveillancewatch;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 public class WelcomeActivity extends WebViewActivity {
 
@@ -40,15 +31,11 @@ public class WelcomeActivity extends WebViewActivity {
 	}
 
 	public void onShowMapClick(View view) {
-		Intent intent = new Intent(this, BrowserActivity.class);
-		intent.putExtra("page", "overview-map.html");
-		startActivity(intent);
+		OptionsMenu.loadMap(this);
 	}
 
 	public void onViewListClick(View view) {
-		Intent intent = new Intent(this, BrowserActivity.class);
-		intent.putExtra("page", "installations-list.html");
-		startActivity(intent);
+		OptionsMenu.loadListOfInstallations(this);
 	}
 
 	@Override
