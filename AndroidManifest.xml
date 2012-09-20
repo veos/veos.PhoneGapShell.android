@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="ca.surveillancerights.surveillancewatch"
     android:versionCode="5"
-    android:versionName="2.0-dev" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionName="2.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16" />
 
