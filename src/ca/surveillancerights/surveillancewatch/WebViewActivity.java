@@ -2,7 +2,6 @@ package ca.surveillancerights.surveillancewatch;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
