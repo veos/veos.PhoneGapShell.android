@@ -35,12 +35,12 @@ import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class BrowserActivity extends WebViewActivity {
 
-	final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
+	final static String DEFAULT_VEOS_URL = "http://mobile.watch.surveillancerights.ca/";
+	//final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
 	//final static String DEFAULT_VEOS_URL = "http://192.168.222.114:8000/";
 	//final static String DEFAULT_VEOS_URL = "http://10.2.1.79:8000";
 
