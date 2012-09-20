@@ -17,11 +17,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -63,7 +63,9 @@ public class BrowserActivity extends WebViewActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if (Build.VERSION.SDK_INT < 11) // hide action bar for 2.x since we have a menu button for those 
+			this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.browser);
 
 		// ((TextView) findViewById(R.id.WelcomeText)).setMovementMethod(new
