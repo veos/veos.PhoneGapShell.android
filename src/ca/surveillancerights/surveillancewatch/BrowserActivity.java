@@ -41,7 +41,7 @@ public class BrowserActivity extends WebViewActivity {
 
 	//final static String DEFAULT_VEOS_URL = "http://mobile.watch.surveillancerights.ca/";
 	//final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
-	final static String DEFAULT_VEOS_URL = "http://142.1.225.59:8000/";
+	final static String DEFAULT_VEOS_URL = "http://192.168.43.221:8000/";
 	//final static String DEFAULT_VEOS_URL = "http://10.2.1.79:8000";
 
 	private static final int GET_PHOTO_FROM_CAMERA = 0;

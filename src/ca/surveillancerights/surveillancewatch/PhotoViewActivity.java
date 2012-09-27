@@ -1,60 +1,65 @@
 package ca.surveillancerights.surveillancewatch;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
-public class PhotoViewActivity extends Activity {
+public class PhotoViewActivity extends WebViewActivity {
 	
 	Thread loadPhotoThread;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		if (Build.VERSION.SDK_INT < 11) // hide action bar for 2.x since we have a menu button for those 
+			this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.photo);
+		
+		setupMainWebView();
 		
 		Intent intent = getIntent();
 		String photoUrl = intent.getExtras().getString("imageUrl");
 		
+
+		WebView photoView =  getMainWebView();
+		photoView.setPadding(0, 0, 0, 0);
+		WebSettings photoViewSettings = photoView.getSettings();
+		photoViewSettings.setSupportZoom(true);
+		photoViewSettings.setBuiltInZoomControls(true);
+
 		loadPhoto(photoUrl);
 	}
 	
 	private void loadPhoto(String photoUrl) {
-		final URL url;
-		try {
-			url = new URL(photoUrl);
-			loadPhotoThread = new Thread() {
-				public void run() {
-					final ImageView imageView = (ImageView) findViewById(R.id.photoView);
+		showLoader("Loading photo...");
+		WebView photoView =  getMainWebView();
+		photoView.setBackgroundColor(0x00000000);
+		photoView.loadUrl(photoUrl);
+	}
+
+	@Override
+	public WebView getMainWebView() {
+		return (WebView) findViewById(R.id.photoView);
+	}
 	
-					InputStream content;
-					try {
-						content = (InputStream) url.getContent();
-						final Drawable d = Drawable.createFromStream(content , "src"); 
-						runOnUiThread(new Runnable() {
-							public void run() {
-								imageView.setImageDrawable(d);
-							}
-						});
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				}
-			};
-			loadPhotoThread.start();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void back(View v) {
+		finish();
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return OptionsMenu.create(this, menu);
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		return OptionsMenu.selectItem(this, featureId, item);
 	}
 }
