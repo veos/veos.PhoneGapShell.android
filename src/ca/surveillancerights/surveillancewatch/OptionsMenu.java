@@ -56,6 +56,13 @@ public class OptionsMenu {
 				originalAppUrl = null;
 			}
 			return true;
+		case R.id.sendfeedback:
+			Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+			emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"SurveillanceRights@gmail.com"});
+			emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "[SurveillanceWatch] ");
+			emailIntent.setType("text/plain");
+			act.startActivity(Intent.createChooser(emailIntent, "Send mail"));
+			return true;
 		default:
 			return false;
 		}

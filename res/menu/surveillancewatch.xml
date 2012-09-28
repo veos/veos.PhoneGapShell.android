@@ -22,4 +22,6 @@
           android:title="@string/help" />
    	<item android:id="@+id/backtoapp"
           android:title="@string/backtoapp" />
+   	<item android:id="@+id/sendfeedback"
+          android:title="@string/sendfeedback" />
 </menu>
