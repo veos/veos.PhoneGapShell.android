@@ -41,7 +41,7 @@ public class BrowserActivity extends WebViewActivity {
 
 	final static String DEFAULT_VEOS_URL = "http://mobile.watch.surveillancerights.ca/";
 	//final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
-	//final static String DEFAULT_VEOS_URL = "http://192.168.222.114:8000/";
+	//final static String DEFAULT_VEOS_URL = "http://192.168.43.221:8000/";
 	//final static String DEFAULT_VEOS_URL = "http://10.2.1.79:8000";
 
 	private static final int GET_PHOTO_FROM_CAMERA = 0;
@@ -240,6 +240,14 @@ public class BrowserActivity extends WebViewActivity {
 			Log.v("Camera", "Something strange happened... Activity request code result was: "+requestCode);
 			break;
 		}
+	}
+	
+	public void viewPhoto(String url) {
+		Log.v("BrowserActivity", "showing photo with url "+url);
+		Intent intent = new Intent(this, PhotoViewActivity.class);
+		intent.putExtra("imageUrl", url);
+		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // bring to front if already running
+		startActivity(intent);
 	}
 	
 	private void uploadPhoto(Uri toUrl, String fromFilename) {

@@ -9,6 +9,7 @@
     <string name="reload">Reload</string>
     <string name="help">Help</string>
     <string name="backtoapp">Back to App</string>
+    <string name="back">Back</string>
     <string name="WelcomeHeader">Welcome to SurveillanceWatch</string>
     <string name="showOverviewMap">View Map</string>
     <string name="ViewAsList">View List</string>
