@@ -2,6 +2,9 @@ package ca.surveillancerights.surveillancewatch;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -20,6 +23,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +52,8 @@ public class BrowserActivity extends WebViewActivity {
 
 	private static final int GET_PHOTO_FROM_CAMERA = 0;
 	private static final int GET_PHOTO_FROM_GALLERY = 1;
+	
+	private static final int MAX_PHOTO_WIDTH = 720;
 	
 	private WebView browser;
 	
@@ -250,8 +258,35 @@ public class BrowserActivity extends WebViewActivity {
 		startActivity(intent);
 	}
 	
+	// TODO: move this out of here
+	private void scalePhoto(String filename) {
+		Bitmap photo, scaledPhoto;
+		try {
+			photo = BitmapFactory.decodeStream(new FileInputStream(filename));
+			int scaledWidth, scaledHeight;
+			float scaleFactor;
+			
+			scaleFactor = photo.getWidth() / (float) MAX_PHOTO_WIDTH;
+			
+			Log.v("BrowserActivity", "Will reduce photo size by factor of "+scaleFactor);
+			
+			scaledWidth = (int) (photo.getWidth() / scaleFactor);
+			scaledHeight = (int) (photo.getHeight() / scaleFactor);
+			
+			scaledPhoto = Bitmap.createScaledBitmap(photo, scaledWidth, scaledHeight, true);
+			
+			scaledPhoto.compress(CompressFormat.JPEG, 70, new FileOutputStream(filename));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	// TODO: move most of this out of here
 	private void uploadPhoto(Uri toUrl, String fromFilename) {
 		browser.loadUrl("javascript:androidUploadStart();");
+		
+		scalePhoto(fromFilename);
 		
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(toUrl.toString());

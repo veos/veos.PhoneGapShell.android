@@ -38,7 +38,7 @@ public class PhotoViewActivity extends WebViewActivity {
 	}
 	
 	private void loadPhoto(String photoUrl) {
-		showLoader("Loading photo...");
+		showLoader("Loading photo: "+photoUrl);
 		WebView photoView =  getMainWebView();
 		photoView.setBackgroundColor(0x00000000);
 		photoView.loadUrl(photoUrl);
