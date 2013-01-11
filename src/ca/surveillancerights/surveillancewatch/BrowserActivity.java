@@ -45,8 +45,8 @@ import android.widget.Toast;
 
 public class BrowserActivity extends WebViewActivity {
 
-	final static String DEFAULT_VEOS_URL = "http://mobile.watch.surveillancerights.ca/";
-	//final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
+	//final static String DEFAULT_VEOS_URL = "http://mobile.watch.surveillancerights.ca/";
+	final static String DEFAULT_VEOS_URL = "http://mobile.dev.surveillancerights.ca/";
 	//final static String DEFAULT_VEOS_URL = "http://192.168.43.221:8000/";
 	//final static String DEFAULT_VEOS_URL = "http://10.2.1.79:8000";
 
@@ -275,7 +275,7 @@ public class BrowserActivity extends WebViewActivity {
 			
 			scaledPhoto = Bitmap.createScaledBitmap(photo, scaledWidth, scaledHeight, true);
 			
-			scaledPhoto.compress(CompressFormat.JPEG, 70, new FileOutputStream(filename));
+			scaledPhoto.compress(CompressFormat.JPEG, 80, new FileOutputStream(filename));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
