@@ -26,6 +26,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -259,10 +260,10 @@ public class BrowserActivity extends WebViewActivity {
 	}
 	
 	// TODO: move this out of here
-	private void scalePhoto(String filename) {
+	private void scalePhoto(String fromFilename, String toFilename) throws FileNotFoundException {
 		Bitmap photo, scaledPhoto;
-		try {
-			photo = BitmapFactory.decodeStream(new FileInputStream(filename));
+		
+			photo = BitmapFactory.decodeStream(new FileInputStream(fromFilename));
 			int scaledWidth, scaledHeight;
 			float scaleFactor;
 			
@@ -275,23 +276,55 @@ public class BrowserActivity extends WebViewActivity {
 			
 			scaledPhoto = Bitmap.createScaledBitmap(photo, scaledWidth, scaledHeight, true);
 			
-			scaledPhoto.compress(CompressFormat.JPEG, 80, new FileOutputStream(filename));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			scaledPhoto.compress(CompressFormat.JPEG, 80, new FileOutputStream(toFilename));
+		
+	}
+	
+	// TODO: only certain exif tags are currently copied, and there is some talk of
+	//		 ExifInterface possibly causing data corruption 
+	//		 (see http://bricolsoftconsulting.com/2012/12/08/copying-exif-metadata-using-sanselan/)
+	private void copyExifMetadata(String fromFilename, String toFilename) throws IOException {
+		ExifInterface fromExif = new ExifInterface(fromFilename);
+		ExifInterface toExif = new ExifInterface(toFilename);
+		
+		toExif.setAttribute(ExifInterface.TAG_ORIENTATION, 
+				fromExif.getAttribute(ExifInterface.TAG_ORIENTATION));
+		
+		toExif.setAttribute(ExifInterface.TAG_DATETIME, 
+				fromExif.getAttribute(ExifInterface.TAG_DATETIME));
+		
+		toExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE, 
+				fromExif.getAttribute(ExifInterface.TAG_GPS_LATITUDE));
+		toExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, 
+				fromExif.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF));
+		toExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, 
+				fromExif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE));
+		toExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, 
+				fromExif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF));
+		
+		toExif.saveAttributes();
 	}
 	
 	// TODO: move most of this out of here
 	private void uploadPhoto(Uri toUrl, String fromFilename) {
 		browser.loadUrl("javascript:androidUploadStart();");
 		
-		scalePhoto(fromFilename);
+		int dot = fromFilename.lastIndexOf('.');
+		String scaledFilename = fromFilename.substring(0, dot) + "_scaled." + fromFilename.substring(dot + 1);
+		
+		try {
+			scalePhoto(fromFilename, scaledFilename);
+			copyExifMetadata(fromFilename, scaledFilename);
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(toUrl.toString());
 		/*.getSchemeSpecificPart())*/
-		FileBody image = new FileBody(new File(fromFilename), "image/jpeg");
+		FileBody image = new FileBody(new File(scaledFilename), "image/jpeg");
 		//StringBody comment = new StringBody("Filename: " + fromUrl.toString());
 
 		MultipartEntity reqEntity = new MultipartEntity();
