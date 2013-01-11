@@ -1,13 +1,17 @@
 package ca.surveillancerights.surveillancewatch;
 
+import java.lang.reflect.Field;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebSettings;
+import android.webkit.WebSettings.ZoomDensity;
 import android.webkit.WebView;
 
 public class PhotoViewActivity extends WebViewActivity {
@@ -38,7 +42,8 @@ public class PhotoViewActivity extends WebViewActivity {
 	}
 	
 	private void loadPhoto(String photoUrl) {
-		showLoader("Loading photo: "+photoUrl);
+		showLoader("Loading photo...");
+		Log.v("PhotoViewActivity", "Loading photo from: "+photoUrl);
 		WebView photoView =  getMainWebView();
 		photoView.setBackgroundColor(0x00000000);
 		photoView.loadUrl(photoUrl);
