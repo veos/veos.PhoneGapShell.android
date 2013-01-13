@@ -286,21 +286,31 @@ public class BrowserActivity extends WebViewActivity {
 	private void copyExifMetadata(String fromFilename, String toFilename) throws IOException {
 		ExifInterface fromExif = new ExifInterface(fromFilename);
 		ExifInterface toExif = new ExifInterface(toFilename);
+		String fromVal;
 		
-		toExif.setAttribute(ExifInterface.TAG_ORIENTATION, 
-				fromExif.getAttribute(ExifInterface.TAG_ORIENTATION));
+		if ((fromVal = fromExif.getAttribute(ExifInterface.TAG_ORIENTATION)) != null) {
+			toExif.setAttribute(ExifInterface.TAG_ORIENTATION, fromVal);
+		}
 		
-		toExif.setAttribute(ExifInterface.TAG_DATETIME, 
-				fromExif.getAttribute(ExifInterface.TAG_DATETIME));
+		if ((fromVal = fromExif.getAttribute(ExifInterface.TAG_DATETIME)) != null) {
+			toExif.setAttribute(ExifInterface.TAG_DATETIME, fromVal);
+		}
 		
-		toExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE, 
-				fromExif.getAttribute(ExifInterface.TAG_GPS_LATITUDE));
-		toExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, 
-				fromExif.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF));
-		toExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, 
-				fromExif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE));
-		toExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, 
-				fromExif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF));
+		if ((fromVal = fromExif.getAttribute(ExifInterface.TAG_GPS_LATITUDE)) != null) {
+			toExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE, fromVal);
+		}
+		
+		if ((fromVal = fromExif.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF)) != null) {
+			toExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, fromVal);
+		}
+		
+		if ((fromVal = fromExif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE)) != null) {
+			toExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, fromVal);
+		}
+		
+		if ((fromVal = fromExif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF)) != null) {
+			toExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, fromVal);
+		}
 		
 		toExif.saveAttributes();
 	}
