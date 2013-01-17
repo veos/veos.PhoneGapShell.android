@@ -10,6 +10,7 @@
         android:layout_height="fill_parent"
         android:background="#000000"
         android:scrollbarAlwaysDrawVerticalTrack="false"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:windowSoftInputMode="adjustResize" />
 
 </LinearLayout>
