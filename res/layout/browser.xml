@@ -11,6 +11,6 @@
         android:background="#000000"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbars="none"
-        android:windowSoftInputMode="adjustResize" />
+         />
 
 </LinearLayout>
