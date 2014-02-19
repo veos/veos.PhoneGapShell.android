@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="ca.surveillancerights.surveillancewatch"
-    android:versionCode="6"
-    android:versionName="2.1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionCode="7"
+    android:versionName="2.2.3" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16" />
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="17" />
 
     <supports-screens
     	android:largeScreens="true"
