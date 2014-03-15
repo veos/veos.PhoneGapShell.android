@@ -152,6 +152,7 @@ public class BrowserActivity extends WebViewActivity {
 		return appUrl;
 	}
 
+	@android.webkit.JavascriptInterface
 	public void getPhotoFromCamera(final String toUrl, final String callback) {
 		File folder = new File(photoFolderPath);
 		boolean success = false;
@@ -177,6 +178,7 @@ public class BrowserActivity extends WebViewActivity {
 		startActivityForResult(intent, GET_PHOTO_FROM_CAMERA);
 	}
 	
+	@android.webkit.JavascriptInterface
 	public void getPhotoFromGallery(final String toUrl, final String callback) {
 		File folder = new File(photoFolderPath);
 		boolean success = false;
@@ -251,6 +253,7 @@ public class BrowserActivity extends WebViewActivity {
 		}
 	}
 	
+	@android.webkit.JavascriptInterface
 	public void viewPhoto(String url) {
 		Log.v("BrowserActivity", "showing photo with url "+url);
 		Intent intent = new Intent(this, PhotoViewActivity.class);
@@ -384,6 +387,7 @@ public class BrowserActivity extends WebViewActivity {
 		}
 	}
 	
+	@android.webkit.JavascriptInterface
 	public void showToast(String toast) {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
     }
